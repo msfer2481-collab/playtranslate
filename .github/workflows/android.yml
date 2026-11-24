@@ -4,9 +4,9 @@ name: PlayTranslate Android Build
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: "17"
           cache: gradle
 
       - name: Set up Android SDK
@@ -31,10 +31,6 @@ jobs:
 
       - name: Accept Android SDK licenses
         run: yes | sdkmanager --licenses || true
-
-      - name: Install Android SDK tools
-        run: |
-          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
       - name: Grant execute permission
         run: chmod +x gradlew
@@ -49,3 +45,4 @@ jobs:
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
           retention-days: 14
+
